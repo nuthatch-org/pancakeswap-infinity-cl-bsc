@@ -1,0 +1,47 @@
+[nest]
+name = "pancakeswap-infinity-cl-bsc"
+chain = "bsc"
+chain_id = 56
+rpc_urls = ["https://bsc-rpc.publicnode.com"]
+schema_version = 1
+block_timestamps = true
+
+[[contracts]]
+alias = "pool_manager"
+address = "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b"
+start_block = 47214308
+abi = "abis/pool_manager.json"
+# The subgraph indexed only Initialize/ModifyLiquidity/Swap. The other seven are
+# free: the getLogs sweep is address-filtered, so widening the topic set costs no
+# extra requests. Donate and DynamicLPFeeUpdated in particular are real pool state
+# the subgraph simply never recorded.
+events = [
+    "Initialize",
+    "ModifyLiquidity",
+    "Swap",
+    "Donate",
+    "DynamicLPFeeUpdated",
+    "ProtocolFeeUpdated",
+    "ProtocolFeeControllerUpdated",
+    "OwnershipTransferred",
+    "Paused",
+    "Unpaused",
+]
+
+[[contracts]]
+alias = "position_manager"
+address = "0x55f4c8aba71a1e923edc303eb4feff14608cc226"
+start_block = 47215015
+abi = "abis/position_manager.json"
+# Likewise a superset of the subgraph's three: MintPosition and ModifyLiquidity
+# are how a position is actually created and resized, which the subgraph's
+# Position entity had to infer from Transfer alone.
+events = [
+    "Subscription",
+    "Unsubscription",
+    "Transfer",
+    "MintPosition",
+    "ModifyLiquidity",
+    "Approval",
+    "ApprovalForAll",
+]
