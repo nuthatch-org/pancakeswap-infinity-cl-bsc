@@ -1,6 +1,6 @@
 # pancakeswap-infinity-cl-bsc
 
-A [nuthatch](https://github.com/nightswatchhq/nuthatch) nest: **PancakeSwap Infinity CL on BNB Smart Chain**.
+A [nuthatch](https://github.com/nuthatch-org/nuthatch) nest: **PancakeSwap Infinity CL on BNB Smart Chain**.
 
 Swaps, liquidity changes, pool initialisations and position lifecycle from the Infinity singleton
 PoolManager and its PositionManager.
@@ -70,7 +70,7 @@ vendored ABIs, and the run above is what this nest actually decoded, not an esti
 ## Run it
 
 ```sh
-nuthatch init --from https://github.com/nightswatchhq/pancakeswap-infinity-cl-bsc
+nuthatch init --from https://github.com/nuthatch-org/pancakeswap-infinity-cl-bsc
 cd pancakeswap-infinity-cl-bsc
 nuthatch dev --dir . --backfill 3000 --seal-direct
 nuthatch sql --dir . "SELECT count(*) FROM pool_manager__swap"
